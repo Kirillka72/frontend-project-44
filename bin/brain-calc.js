@@ -71,7 +71,7 @@ function playGame() {
             if (correctAnswers === quantityCorrectAnswers) {
               console.log(`Congratulations, ${name}!`)
               rlInterface.close()
-            } 
+            }
             else {
               askQuestion()
             }
