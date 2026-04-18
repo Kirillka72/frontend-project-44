@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 function generateRandomNumber(min = 1, max = 50) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generateRandomOperation() {
