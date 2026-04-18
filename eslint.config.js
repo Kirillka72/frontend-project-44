@@ -12,7 +12,7 @@ export default [
     },
     rules: {
       'quotes': ['error', 'single'],
-      'semi': 'error',
+      'semi':  ['error', 'always'],
       'indent': ['error', 2],
       'no-trailing-spaces': 'error',
       'no-multiple-empty-lines': ['error', { max: 1 }]
