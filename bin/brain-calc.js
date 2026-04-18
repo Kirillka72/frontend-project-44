@@ -74,9 +74,9 @@ function playGame() {
             } 
             else {
               askQuestion()
-          
             }
-          } else {
+          }
+          else {
             console.log(`'${userNumber}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`)
             console.log(`Let's try again, ${name}!`)
             rlInterface.close()

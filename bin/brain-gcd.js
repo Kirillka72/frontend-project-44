@@ -62,10 +62,12 @@ function playGame() {
             if (correctAnswers === quantityCorrectAnswers) {
               console.log(`Congratulations, ${name}!`)
               rlInterface.close()
-            } else {
+            }
+            else {
               askQuestion()
             }
-          } else {
+          }
+          else {
             console.log(`'${userNumber}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`)
             console.log(`Let's try again, ${name}!`)
             rlInterface.close()

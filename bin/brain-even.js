@@ -48,10 +48,12 @@ function playGame() {
             if (correctAnswers === quantityCorrectAnswers) {
               console.log(`Congratulations, ${name}!`)
               rlInterface.close()
-            } else {
+            }
+            else {
               askQuestion()
             }
-          } else {
+          }
+          else {
             const correctAnswer = isEven(number) ? 'yes' : 'no'
             console.log(`'${processedAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`)
             console.log(`Let's try again, ${name}!`)

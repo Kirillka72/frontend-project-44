@@ -1,7 +1,4 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
-import { defineConfig } from 'eslint/config'
+
 
 export default [
   {
@@ -11,10 +8,8 @@ export default [
       sourceType: 'module',
     },
     rules: {
-      // Убираем лишние точки с запятой
       'semi': ['error', 'never'],
 
-      // Правильная настройка отступов (2 пробела)
       'indent': ['error', 2, {
         SwitchCase: 1,
         VariableDeclarator: 1,
@@ -28,19 +23,14 @@ export default [
         },
       }],
 
-      // Скобки вокруг аргументов стрелочных функций
       'arrow-parens': ['error', 'always'],
 
-      // Замыкающие запятые в многострочных структурах
       'comma-dangle': ['error', 'always-multiline'],
 
-      // Стиль фигурных скобок: открывающая на той же строке, закрывающая — на новой
-      'brace-style': ['error', '1tbs', { allowSingleLine: true }],
+      'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
 
-      // Запрет пустых строк внутри блоков (ошибка padded-blocks)
       'padded-blocks': ['error', 'never'],
 
-      // Обязательная новая строка в конце файла (ошибка eol-last)
       'eol-last': ['error', 'always'],
     },
   },
