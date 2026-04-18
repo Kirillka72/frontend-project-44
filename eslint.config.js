@@ -1,7 +1,21 @@
-import js from "@eslint/js";
-import globals from "globals";
-import { defineConfig } from "eslint/config";
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
-export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node } },
-]);
+export default [
+  {
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module'
+    },
+    rules: {
+      'quotes': ['error', 'single'],
+      'semi': 'error',
+      'indent': ['error', 2],
+      'no-trailing-spaces': 'error',
+      'no-multiple-empty-lines': ['error', { max: 1 }]
+    }
+  }
+];

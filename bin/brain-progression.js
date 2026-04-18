@@ -1,91 +1,90 @@
 #!/usr/bin/env node
 
 function generateProgression(start, step, length) {
-    const progression = [];
-    for (let i = 0; i < length; i++) {
-        progression.push(start + i * step);
-    }
-    return progression;
+  const progression = [];
+  for (let i = 0; i < length; i++) {
+    progression.push(start + i * step);
+  }
+  return progression;
 }
 
 function createQuestion() {
-    const start = Math.floor(Math.random() * 20) + 1; 
-    const step = Math.floor(Math.random() * 10) + 1;  
-    const length = Math.floor(Math.random() * 6) + 5; 
+  const start = Math.floor(Math.random() * 20) + 1;
+  const step = Math.floor(Math.random() * 10) + 1;
+  const length = Math.floor(Math.random() * 6) + 5;
 
-    const progression = generateProgression(start, step, length);
+  const progression = generateProgression(start, step, length);
 
-    const hiddenIndex = Math.floor(Math.random() * length);
-    const correctAnswer = progression[hiddenIndex];
+  const hiddenIndex = Math.floor(Math.random() * length);
+  const correctAnswer = progression[hiddenIndex];
 
-    const questionProgression = [...progression];
-    questionProgression[hiddenIndex] = '..';
+  const questionProgression = [...progression];
+  questionProgression[hiddenIndex] = '..';
 
-    return {
-        question: questionProgression.join(' '),
-        correctAnswer: correctAnswer
-    };
+  return {
+    question: questionProgression.join(' '),
+    correctAnswer: correctAnswer
+  };
 }
 
 function playGame() {
-    import('readline').then(rl => {
-        const readline = rl.default;
-        const rlInterface = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
+  import('readline').then(rl => {
+    const readline = rl.default;
+    const rlInterface = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-        console.log('brain-progression');
-        console.log();
-        console.log('Welcome to the Brain Games!');
+    console.log('brain-progression');
+    console.log();
+    console.log('Welcome to the Brain Games!');
 
-        rlInterface.question('May I have your name? ', (name) => {
-            name = name || 'Player';
-            console.log(`Hello, ${name}!`);
-            console.log('What number is missing in the progression?');
+    rlInterface.question('May I have your name? ', (name) => {
+      name = name || 'Player';
+      console.log(`Hello, ${name}!`);
+      console.log('What number is missing in the progression?');
 
-            let correctAnswers = 0;
-            const quantityCorrectAnswers = 3;
+      let correctAnswers = 0;
+      const quantityCorrectAnswers = 3;
 
-            function askQuestion() {
-                const { question, correctAnswer } = createQuestion();
+      function askQuestion() {
+        const { question, correctAnswer } = createQuestion();
 
-                console.log(`Question: ${question}`);
+        console.log(`Question: ${question}`);
 
-                rlInterface.question('Your answer: ', (userAnswer) => {
-                    const processedAnswer = (userAnswer || '').trim();
+        rlInterface.question('Your answer: ', (userAnswer) => {
+          const processedAnswer = (userAnswer || '').trim();
 
-                    if (!/^-?\d+$/.test(processedAnswer)) {
-                        console.log(`'${processedAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-                        console.log(`Let's try again, ${name}!`);
-                        rlInterface.close();
-                        return;
-                    }
+          if (!/^-?\d+$/.test(processedAnswer)) {
+            console.log(`'${processedAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+            console.log(`Let's try again, ${name}!`);
+            rlInterface.close();
+            return;
+          }
 
-                    const userNumber = parseInt(processedAnswer, 10);
+          const userNumber = parseInt(processedAnswer, 10);
 
-                    if (userNumber === correctAnswer) {
-                console.log('Correct!');
-                correctAnswers++;
+          if (userNumber === correctAnswer) {
+            console.log('Correct!');
+            correctAnswers++;
 
-                if (correctAnswers === quantityCorrectAnswers) {
-                    console.log(`Congratulations, ${name}!`);
-                    rlInterface.close();
-                } else {
-                    askQuestion();
-                }
+            if (correctAnswers === quantityCorrectAnswers) {
+              console.log(`Congratulations, ${name}!`);
+              rlInterface.close();
             } else {
-                console.log(`'${userNumber}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-                console.log(`Let's try again, ${name}!`);
-                rlInterface.close();
+              askQuestion();
             }
+          } else {
+            console.log(`'${userNumber}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+            console.log(`Let's try again, ${name}!`);
+            rlInterface.close();
+          }
         });
-    }
+      }
 
-    askQuestion(); 
-});
-});
+      askQuestion();
+    });
+  });
 }
-
 
 playGame();
