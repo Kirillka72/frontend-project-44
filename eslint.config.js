@@ -36,6 +36,12 @@ export default [
 
       // Стиль фигурных скобок: открывающая на той же строке, закрывающая — на новой
       'brace-style': ['error', '1tbs', { allowSingleLine: true }],
+
+      // Запрет пустых строк внутри блоков (ошибка padded-blocks)
+      'padded-blocks': ['error', 'never'],
+
+      // Обязательная новая строка в конце файла (ошибка eol-last)
+      'eol-last': ['error', 'always'],
     },
   },
 ]

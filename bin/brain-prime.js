@@ -45,13 +45,11 @@ function playGame() {
       const quantityCorrectAnswers = 3
 
       function askQuestion() {
-
         const number = generateRandomNumber()
 
         console.log(`Question: ${number}`)
 
         rlInterface.question('Your answer: ', (userAnswer) => {
-
           const processedAnswer = (userAnswer || '').trim().toLowerCase()
 
           if (processedAnswer !== 'yes' && processedAnswer !== 'no') {
